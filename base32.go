@@ -19,7 +19,7 @@ import (
 )
 
 // Base32Alphabet - Rootchain address encoding alphabet.
-const Base32Alphabet = "dpzqy9x8bf2tvrw0s3jn54khce6mua7l"
+const Base32Alphabet = "0pzqy9x8bf2tvrwds3jn54khce6mua7l"
 
 // Encoding - Rootchain address encoder.
 var Encoding = base32.NewEncoding(Base32Alphabet).WithPadding(base32.NoPadding)

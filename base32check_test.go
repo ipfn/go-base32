@@ -15,16 +15,16 @@ var checkEncodingStringTests = []struct {
 	out     string
 }{
 	{20, "", "znts8576"},
-	{20, " ", "zssfhdqjhy"},
+	{20, " ", "zssfh0qjhy"},
 	{20, "-", "zskjvbs4yv"},
-	{20, "0", "zscb0prtmd"},
+	{20, "0", "zscbdprtm0"},
 	{20, "1", "zsc5pjbhty"},
-	{20, "-1", "zsknzyyc2x7d"},
-	{20, "11", "zscnz9a2ub5d"},
+	{20, "-1", "zsknzyyc2x70"},
+	{20, "11", "zscnz9a2ub50"},
 	{20, "abc", "z3skyce97vrm5"},
 	{20, "1234598760", "zscnyve5x5unsrekxpesys8w"},
-	{20, "abcdefghijklmnopqrstuvwxyz", "z3skycmyv4nxw6qfrf4kcmtwrac8zunnw36hvamc09af9qmy85"},
-	{20, "00000000000000000000000000000000000000000000000000000000000000", "zscqdvpsxdcqdvpsxdcqdvpsxdcqdvpsxdcqdvpsxdcqdvpsxdcqdvpsxdcqdvpsxdcqdvpsxdcqdvpsxdcqdvpsxdcqdvpsxdcqplklr6pd"},
+	{20, "abcdefghijklmnopqrstuvwxyz", "z3skycmyv4nxw6qfrf4kcmtwrac8zunnw36hvamcd9af9qmy85"},
+	{20, "00000000000000000000000000000000000000000000000000000000000000", "zscq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cqplklr6p0"},
 }
 
 func TestBase32Check(t *testing.T) {
@@ -61,5 +61,11 @@ func TestBase32Check(t *testing.T) {
 			t.Error("Checkdecode test failed, expected ErrInvalidFormat")
 		}
 	}
+}
 
+func TestBase32CheckZeros(t *testing.T) {
+	res := CheckEncodeToString([]byte{0, 0, 0, 0, 0, 0, 0, 0, 123}, 0x0)
+	if res != "00000000000000qmdn28lms" {
+		t.Errorf("CheckEncodeZeros failed: got %s", res)
+	}
 }
