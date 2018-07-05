@@ -2,7 +2,7 @@
 
 [![GoDoc](https://godoc.org/github.com/ipfn/go-base32check?status.svg)](https://godoc.org/github.com/ipfn/go-base32check)
 
-Go implementation of checksum encoded base32 with custom alphabet.
+Go implementation of checksum encoded base32 with custom alphabet and custom checksums.
 
 ## References
 

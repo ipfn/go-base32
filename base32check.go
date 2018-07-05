@@ -6,8 +6,10 @@
 package base32check
 
 import (
-	"crypto/sha256"
 	"errors"
+	"hash/crc32"
+
+	"github.com/gogo/protobuf/proto"
 )
 
 // ErrChecksum indicates that the checksum of a check-encoded string does not verify against
@@ -15,50 +17,45 @@ import (
 var ErrChecksum = errors.New("checksum error")
 
 // ErrInvalidFormat indicates that the check-encoded string has an invalid format.
-var ErrInvalidFormat = errors.New("invalid format: version and/or checksum bytes missing")
+var ErrInvalidFormat = errors.New("invalid format: checksum bytes missing")
+
+const cSize = 1
 
 // checksum: first four bytes of sha256^2
-func checksum(input []byte) (cksum [4]byte) {
-	h := sha256.Sum256(input)
-	h2 := sha256.Sum256(h[:])
-	copy(cksum[:], h2[:4])
-	return
+func checksum(input []byte) (cksum byte) {
+	// log.Printf("cksum: %x (-1=%x)", body, body[0])
+	return proto.EncodeVarint(uint64(crc32.ChecksumIEEE(input)))[0]
 }
 
-// CheckEncode prepends a version byte and appends a four byte checksum.
-func CheckEncode(input []byte, version byte) []byte {
-	return Encode(checkBuffer(input, version))
+// CheckEncode prepends and appends a four byte checksum.
+func CheckEncode(input []byte) []byte {
+	return Encode(checkBuffer(input))
 }
 
 // CheckEncodeToString is CheckEncode to string.
-func CheckEncodeToString(input []byte, version byte) string {
-	return EncodeToString(checkBuffer(input, version))
+func CheckEncodeToString(input []byte) string {
+	return EncodeToString(checkBuffer(input))
 }
 
 // CheckDecodeString decodes a string that was encoded with CheckEncode and verifies the checksum.
-func CheckDecodeString(input string) (result []byte, version byte, err error) {
+func CheckDecodeString(input string) (result []byte, err error) {
 	decoded, err := DecodeString(input)
 	if err != nil {
 		return
 	}
-	if len(decoded) < 5 {
-		return nil, 0, ErrInvalidFormat
+	if len(decoded) < 1 {
+		err = ErrInvalidFormat
+		return
 	}
-	version = decoded[0]
-	var cksum [4]byte
-	copy(cksum[:], decoded[len(decoded)-4:])
-	if checksum(decoded[:len(decoded)-4]) != cksum {
-		return nil, 0, ErrChecksum
+	cksum := decoded[len(decoded)-1]
+	result = decoded[:len(decoded)-1]
+	if checksum(result) != cksum {
+		err = ErrChecksum
+		return
 	}
-	payload := decoded[1 : len(decoded)-4]
-	result = append(result, payload...)
 	return
 }
 
-func checkBuffer(input []byte, version byte) []byte {
-	b := make([]byte, 0, 1+len(input)+4)
-	b = append(b, version)
-	b = append(b, input[:]...)
-	cksum := checksum(b)
-	return append(b, cksum[:]...)
+func checkBuffer(input []byte) []byte {
+	return append(input, checksum(input))
 }
