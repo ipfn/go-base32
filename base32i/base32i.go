@@ -1,4 +1,7 @@
 // Copyright © 2018 The IPFN Developers. All Rights Reserved.
+// Copyright © 2013-2014 The btcsuite developers. All Rights Reserved.
+//
+// Use of this source code is governed by an ISC license.
 //
 // Permission to use, copy, modify, and distribute this software for any
 // purpose with or without fee is hereby granted, provided that the above
@@ -12,7 +15,7 @@
 // ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 // OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-package base32check
+package base32i
 
 import (
 	"encoding/base32"
@@ -23,6 +26,13 @@ const Base32Alphabet = "0pzqy9x8bf2tvrwds3jn54khce6mua7l"
 
 // Encoding - Rootchain address encoder.
 var Encoding = base32.NewEncoding(Base32Alphabet).WithPadding(base32.NoPadding)
+
+// Decode - Encodes rootchain address bytes.
+func Decode(src []byte) (body []byte, err error) {
+	body = make([]byte, Encoding.DecodedLen(len(src)))
+	_, err = Encoding.Decode(body, src)
+	return
+}
 
 // DecodeString - Encodes rootchain address bytes.
 func DecodeString(src string) (body []byte, err error) {

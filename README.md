@@ -1,6 +1,6 @@
-# go-base32check
+# go-base32i: base32 encoding with IPFN alphabet and checks
 
-[![GoDoc](https://godoc.org/github.com/ipfn/go-base32check?status.svg)](https://godoc.org/github.com/ipfn/go-base32check)
+[![GoDoc](https://godoc.org/github.com/ipfn/go-base32i/base32i?status.svg)](https://godoc.org/github.com/ipfn/go-base32i/base32i)
 
 Go implementation of checksum encoded base32 with custom alphabet and custom checksums.
 
