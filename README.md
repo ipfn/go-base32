@@ -1,28 +1,32 @@
-# go-base32i: base32 encoding with IPFN alphabet and checks
+# [go-base32i][base32i]: IPFN base32 encoding with checksums
 
-[![GoDoc](https://godoc.org/github.com/ipfn/go-base32i/base32i?status.svg)](https://godoc.org/github.com/ipfn/go-base32i/base32i)
+[![IPFN project][badge-ipfn]][org-ipfn]
+[![IPFN Documentation][badge-docs]][docs]
+[![See COPYING.txt][badge-copying]][COPYING]
+[![GoDoc][badge-godoc]][godoc-ipfn]
+[![Travis CI][badge-ci]][ci]
+[![Coverage Status][coverage-badge]][coverage-status]
 
-Go implementation of checksum encoded base32 with custom alphabet and custom checksums.
+Go implementation of base32 encoding with ipfn specific alphabet and custom checksums.
 
-## References
+## License
 
-* [base58check.go](https://github.com/btcsuite/btcutil/blob/master/base58/base58check.go) - source code
+See [COPYING][COPYING] file for licensing details.
 
-## Copyright
+## Project
 
-```
- Copyright (c) 2018 The IPFN Developers
- Copyright (c) 2013-2018 The btcsuite developers
+This source code is part of [IPFN](https://github.com/ipfn) – interplanetary functions project.
 
- Permission to use, copy, modify, and distribute this software for any
- purpose with or without fee is hereby granted, provided that the above
- copyright notice and this permission notice appear in all copies.
- 
- THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
- WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
- MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
- ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
- ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
- OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-```
+[ci]: https://travis-ci.org/ipfn/go-base32i
+[docs]: https://docs.ipfn.io/
+[COPYING]: https://github.com/ipfn/go-base32i/blob/master/COPYING
+[badge-ci]: https://travis-ci.org/ipfn/go-base32i.svg?branch=master
+[badge-copying]: https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square
+[badge-docs]: https://img.shields.io/badge/documentation-IPFN-blue.svg?style=flat-square
+[badge-godoc]: https://godoc.org/github.com/ipfn/go-base32i/base32i?status.svg
+[badge-ipfn]: https://img.shields.io/badge/project-IPFN-blue.svg?style=flat-square
+[coverage-badge]: https://coveralls.io/repos/github/ipfn/go-base32i/badge.svg?branch=master
+[coverage-status]: https://coveralls.io/github/ipfn/go-base32i?branch=master
+[org-ipfn]: https://github.com/ipfn
+[godoc-ipfn]: https://godoc.org/github.com/ipfn/go-base32i/base32i
+[base32i]: https://github.com/ipfn/go-base32i/
