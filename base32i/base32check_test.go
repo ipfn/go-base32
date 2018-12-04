@@ -26,16 +26,16 @@ var checkEncodingStringTests = []struct {
 	out string
 }{
 	{"", "00"},
-	{" ", "yqzs"},
-	{"-", "9hu0"},
-	{"0", "xzss"},
-	{"1", "xxms"},
-	{"-1", "95c65"},
-	{"11", "xyclw"},
-	{"abc", "v93x8ss"},
-	{"1234598760", "xyeqxrp48yuqwr3sj0"},
-	{"abcdefghijklmnopqrstuvwxyz", "v93xxeq9venks6t2rrkx6mndwpchyum5w4m8w7qed27s"},
-	{"00000000000000000000000000000000000000000000000000000000000000", "x0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cdx"},
+	{" ", "y080"},
+	{"-", "95ys"},
+	{"0", "x08s"},
+	{"1", "xyy0"},
+	{"-1", "95csx"},
+	{"11", "xycs6"},
+	{"abc", "v93xx0c"},
+	{"1234598760", "xyeqxrp48yuqwr3s0u"},
+	{"abcdefghijklmnopqrstuvwxyz", "v93xxeq9venks6t2rrkx6mndwpchyum5w4m8w7qedbz0"},
+	{"00000000000000000000000000000000000000000000000000000000000000", "x0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0cq0vpsx0c0x"},
 }
 
 func TestBase32Check(t *testing.T) {
@@ -75,7 +75,7 @@ func TestBase32Check(t *testing.T) {
 
 func TestBase32CheckZeros(t *testing.T) {
 	res := CheckEncodeToString([]byte{0, 0, 0, 0, 0, 0, 0, 0, 123})
-	if res != "00000000000007u6" {
+	if res != "00000000000007cz" {
 		t.Errorf("CheckEncodeZeros failed: got %s", res)
 	}
 }

@@ -32,7 +32,8 @@ var ErrInvalidFormat = errors.New("invalid format: checksum bytes missing")
 const cSize = 1
 
 func checksum(input []byte) (cksum byte) {
-	return encodeVarint(uint64(crc32.ChecksumIEEE(input)))[0]
+	vint := encodeVarint(uint64(crc32.ChecksumIEEE(input)))
+	return vint[len(vint)-1]
 }
 
 // source: github.com/gogo/protobuf/proto
