@@ -59,6 +59,15 @@ func CheckEncodeToString(input []byte) string {
 	return EncodeToString(checkBuffer(input))
 }
 
+// CheckEncodePrefixed is CheckEncode to string with multibase prefix 'i'.
+func CheckEncodePrefixed(input []byte) string {
+	input = checkBuffer(input)
+	buf := make([]byte, Encoding.EncodedLen(len(input))+1)
+	buf[0] = 'i'
+	Encoding.Encode(buf[1:], input)
+	return string(buf)
+}
+
 // CheckDecodeString decodes a string that was encoded with CheckEncode and verifies the checksum.
 func CheckDecodeString(input string) (result []byte, err error) {
 	decoded, err := DecodeString(input)
